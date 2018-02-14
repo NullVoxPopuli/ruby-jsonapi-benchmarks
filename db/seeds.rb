@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-COMMENTS_PER_POST = 2
-POSTS = 2
+COMMENTS_PER_POST = 20
+POSTS = 20
 
 u = User.create(first_name: 'Diana', last_name: 'Prince', birthday: 3000.years.ago)
 

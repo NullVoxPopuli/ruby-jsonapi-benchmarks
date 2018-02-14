@@ -9,7 +9,7 @@ require 'bundler/setup'
 
 Bundler.require(:default)
 
-ENV['USE_DEFAULTS'] ||= nil
+ENV['USE_DEFAULTS'] ||= 'true'
 ENV['TEST_OUTPUT'] ||= nil
 
 require_relative './db/setup'
