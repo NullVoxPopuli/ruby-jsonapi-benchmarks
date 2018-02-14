@@ -11,10 +11,10 @@ module SerializationHelper
     )
   end
 
-  def test_manual_eagerload(render_with)
+  def test_manual_eagerload(render_with, data = nil)
     render_data(
       # User.auto_include(false).includes(posts: [:comments]).first,
-      User.includes(posts: [:comments]).first,
+      data || User.includes(posts: [:comments]).first,
       render_with
     )
   end
@@ -26,17 +26,16 @@ module SerializationHelper
   def ams(data)
     ActiveModelSerializers::SerializableResource.new(
       data,
-      include: 'posts',
+      # include: 'posts',
       # fields: params[:fields],
-      adapter: :json_api,
-      serializer: AMS::UserSerializer
+      adapter: :json_api
     ).as_json
   end
 
   def jsonapi_rb(data)
     JSONAPI::Serializable::Renderer.new.render(
       data,
-      include: 'posts',
+      # include: 'posts',
       class: {
         User: JsonapiRb::SerializableUser,
         Post: JsonapiRb::SerializablePost,
@@ -51,6 +50,9 @@ module SerializationHelper
   # - _not_ rendering every id in a has_many relationship...
   #   by default, this means that jsonapi-rb is a clear winner...
   def fast_jsonapi(data)
-    NetflixFastJsonapi::UserSerializer.new(data, include: [:posts]).serializable_hash
+    NetflixFastJsonapi::UserSerializer.new(
+      data,
+      # include: [:posts]
+    ).serializable_hash
   end
 end
