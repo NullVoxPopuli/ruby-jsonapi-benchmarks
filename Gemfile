@@ -9,7 +9,8 @@ gem 'oj'
 gem 'oj_mimic_json'
 
 gem 'active_model_serializers'
-gem 'jsonapi-rb', '>= 0.3.0'
+gem 'jsonapi-rb'
+gem 'jsonapi-serializable'
 gem 'fast_jsonapi'
 
 gem 'activerecord'

@@ -5,6 +5,12 @@ module JsonapiRb
     attributes :first_name, :last_name, :birthday,
                :created_at, :updated_at
 
-    has_many :posts
+    if ENV['USE_DEFAULTS']
+      has_many :posts
+    else
+      has_many :posts do
+        linkage(always: true)
+      end
+    end
   end
 end

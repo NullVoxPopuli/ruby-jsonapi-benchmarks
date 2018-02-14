@@ -3,14 +3,14 @@ require_relative './models/comment'
 require_relative './models/post'
 require_relative './models/user'
 
-require_relative './serializers/ams/comment_serializer'
-require_relative './serializers/ams/post_serializer'
-require_relative './serializers/ams/user_serializer'
+# Pre-define things, cause circular references (Rails' autoloader handles this for us, typically)
+module AMS
+  class UserSerializer < ActiveModel::Serializer; end
+  class PostSerializer < ActiveModel::Serializer; end
+  class CommentSerializer < ActiveModel::Serializer; end
+end
 
-require_relative './serializers/jsonapi_rb/serializable_comment'
-require_relative './serializers/jsonapi_rb/serializable_post'
-require_relative './serializers/jsonapi_rb/serializable_user'
 
-require_relative './serializers/netflix_fast_jsonapi/comment_serializer'
-require_relative './serializers/netflix_fast_jsonapi/post_serializer'
-require_relative './serializers/netflix_fast_jsonapi/user_serializer'
+Dir[File.dirname(__FILE__) + '/serializers/ams/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/serializers/jsonapi_rb/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/serializers/netflix_fast_jsonapi/*.rb'].each {|file| require file }

@@ -1,3 +1,6 @@
+require_relative './user_serializer'
+require_relative './comment_serializer'
+
 module AMS
   class PostSerializer < ActiveModel::Serializer
     attributes :id,

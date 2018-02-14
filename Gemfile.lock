@@ -103,7 +103,8 @@ DEPENDENCIES
   benchmark-ips
   benchmark-memory
   fast_jsonapi
-  jsonapi-rb (>= 0.3.0)
+  jsonapi-rb
+  jsonapi-serializable
   kalibera
   oj
   oj_mimic_json

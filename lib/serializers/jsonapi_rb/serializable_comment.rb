@@ -4,6 +4,12 @@ module JsonapiRb
 
     attributes :author, :comment
 
-    belongs_to :post
+    if ENV['USE_DEFAULTS']
+      belongs_to :post
+    else
+      belongs_to :post do
+        linkage(always: true)
+      end
+    end
   end
 end

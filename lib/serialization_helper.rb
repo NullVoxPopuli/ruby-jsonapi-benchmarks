@@ -1,3 +1,6 @@
+# freaking AMS.
+Dir[File.dirname(__FILE__) + '/serializers/ams/*.rb'].each {|file| require file }
+
 module SerializationHelper
   module_function
 
@@ -42,6 +45,11 @@ module SerializationHelper
     )
   end
 
+  # NOTE: at the time of writing this, netflix doesn't support:
+  # -  nested includes.......
+  # - relationship types aren't the same as the resource type...
+  # - _not_ rendering every id in a has_many relationship...
+  #   by default, this means that jsonapi-rb is a clear winner...
   def fast_jsonapi(data)
     NetflixFastJsonapi::UserSerializer.new(data, include: [:posts]).serializable_hash
   end
